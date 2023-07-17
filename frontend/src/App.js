@@ -64,11 +64,13 @@ function App() {
   {/* {
     otp  ? ( */}
       <Route path='/reset-password' element={<ResetPassword/>} />
-{/* ) :  */}
-    (
-      {/* <Route path='/login' element={<Login />} /> */}
-    )
-  {/* } */}
+ {/* ) :  
+    ( */}
+       <Route path='/login' element={<Login />} /> 
+    {/* )
+   }  */}
+
+
   <Route path='/ForgotAccount' element={<ForgotAccount  />} />
 
 {/* {

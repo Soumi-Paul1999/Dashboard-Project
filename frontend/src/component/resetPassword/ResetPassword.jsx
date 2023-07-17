@@ -1,17 +1,21 @@
 import React , {useState} from "react";
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // import {useHistory} from "react-router-dom"
 
 const ResetPassword = () => {
  // const history = useHistory()
     const navigate = useNavigate()
+    const location = useLocation()
+console.log("location state", location.state.OTP)
+
     const [newUser, setNewUser] = useState(
        
         {
-   
+
+            OTP: location.state.OTP,
     newPassword:"",
     confirmPassword: "",
      }
@@ -41,15 +45,14 @@ const ResetPassword = () => {
             alert(res.data.message)
             // setUser(res.data.userid
             //     ) 
-            localStorage.setItem("user", res.data.userid)
+            // localStorage.setItem("user", res.data.userid)
             //  history.push("/")
             navigate('/login')
           
         } catch (error) {
             console.log("error",error)
 
-            alert("Please enter correct password ",error)
-        }
+                    }
 }
  
   return (

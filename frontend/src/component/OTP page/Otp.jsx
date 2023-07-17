@@ -39,7 +39,7 @@ console.log("newUser",newUser);
             alert(res.data.success)
 
             //  localStorage.setItem("otp",res.data.userid)
-            navigate("/reset-password")
+            navigate("/reset-password", { state: { OTP: newUser.OTP } })
 
           } catch (error) {
               console.log("error",error)

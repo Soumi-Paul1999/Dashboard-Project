@@ -146,3 +146,38 @@ exports.getOTP= catchAsyncError(async(req,res,next)=>{
  }
 
 })
+
+exports.resetPassword = catchAsyncError(async(req,res,next)=>{
+  const {OTP , newPassword, confirmPassword} = req.body;
+  
+const resetPasswordOTP = req.body ; 
+
+const user = await User.findOne({
+  resetPasswordOTP:OTP,
+  // resetPasswordExpire
+  // :{$gt: Date.now()}
+})
+
+if(!user){
+  return next(
+    new ErrorHandler("reset password otp is invalid or hasbeen expired",401)
+  )
+}
+
+//Validate new password and confirm password match
+if(req.body.newPassword != req.body.confirmPassword) {
+  return res.status(400).json({ message : "Passwords do not match"})
+}
+
+user.password = req.body.newPassword;
+user.resetPasswordOTP= undefined;
+
+console.log("user.password", user.password);
+// user.resetPasswordExpire = undefined;
+
+await user.save();
+res.status(200).json({message: "Password reset successfull"})
+
+  } 
+)
+  

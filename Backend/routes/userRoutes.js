@@ -4,7 +4,7 @@ const uploader=require("../middleware/Multer");
 let path = require("path");
 let User = require("../models/user.model");
 const cloudinary = require("../utils/cloudinary");
-const { register, login, logout,  ForgotPassword, getOTP } = require("../controller/userController");
+const { register, login, logout,  ForgotPassword, getOTP, resetPassword } = require("../controller/userController");
 
 
 
@@ -14,4 +14,5 @@ router.route("/login").post(login);
 router.route("/logout").post(logout);
 router.route("/ForgotPassword").post(ForgotPassword);
 router.route("/OTP").post(getOTP);
+router.route("/resetPassword").post(resetPassword);
     module.exports = router;
